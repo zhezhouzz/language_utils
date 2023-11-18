@@ -1,0 +1,1139 @@
+(lang dune 3.7)
+(name ocaml5_parser)
+(version 0.1)
+(sections (lib .) (libexec .) (doc ../../doc/ocaml5_parser))
+(files
+ (lib
+  (META
+   annot.mli
+   arg_helper.ml
+   arg_helper.mli
+   ast_helper.ml
+   ast_helper.mli
+   ast_invariants.ml
+   ast_invariants.mli
+   ast_iterator.ml
+   ast_iterator.mli
+   ast_mapper.ml
+   ast_mapper.mli
+   asttypes.mli
+   attr_helper.ml
+   attr_helper.mli
+   binutils.ml
+   binutils.mli
+   btype.ml
+   btype.mli
+   build_path_prefix_map.ml
+   build_path_prefix_map.mli
+   builtin_attributes.ml
+   builtin_attributes.mli
+   camlinternalMenhirLib.ml
+   camlinternalMenhirLib.mli
+   ccomp.ml
+   ccomp.mli
+   clflags.ml
+   clflags.mli
+   cmi_format.ml
+   cmi_format.mli
+   cmt2annot.ml
+   cmt_format.ml
+   cmt_format.mli
+   config.ml
+   config.mli
+   consistbl.ml
+   consistbl.mli
+   ctype.ml
+   ctype.mli
+   datarepr.ml
+   datarepr.mli
+   depend.ml
+   depend.mli
+   diffing.ml
+   diffing.mli
+   diffing_with_keys.ml
+   diffing_with_keys.mli
+   docstrings.ml
+   docstrings.mli
+   dune-package
+   env.ml
+   env.mli
+   envaux.ml
+   envaux.mli
+   errortrace.ml
+   errortrace.mli
+   frontend.ml
+   frontend.mli
+   ident.ml
+   ident.mli
+   identifiable.ml
+   identifiable.mli
+   includeclass.ml
+   includeclass.mli
+   includecore.ml
+   includecore.mli
+   includemod.ml
+   includemod.mli
+   includemod_errorprinter.ml
+   includemod_errorprinter.mli
+   int_replace_polymorphic_compare.ml
+   int_replace_polymorphic_compare.mli
+   lazy_backtrack.ml
+   lazy_backtrack.mli
+   lexer.ml
+   lexer.mli
+   load_path.ml
+   load_path.mli
+   local_store.ml
+   local_store.mli
+   location.ml
+   location.mli
+   longident.ml
+   longident.mli
+   misc.ml
+   misc.mli
+   mtype.ml
+   mtype.mli
+   numbers.ml
+   numbers.mli
+   ocaml5_parser.a
+   ocaml5_parser.cma
+   ocaml5_parser.cmi
+   ocaml5_parser.cmt
+   ocaml5_parser.cmx
+   ocaml5_parser.cmxa
+   ocaml5_parser.ml
+   ocaml5_parser__Annot.cmi
+   ocaml5_parser__Annot.cmti
+   ocaml5_parser__Arg_helper.cmi
+   ocaml5_parser__Arg_helper.cmt
+   ocaml5_parser__Arg_helper.cmti
+   ocaml5_parser__Arg_helper.cmx
+   ocaml5_parser__Ast_helper.cmi
+   ocaml5_parser__Ast_helper.cmt
+   ocaml5_parser__Ast_helper.cmti
+   ocaml5_parser__Ast_helper.cmx
+   ocaml5_parser__Ast_invariants.cmi
+   ocaml5_parser__Ast_invariants.cmt
+   ocaml5_parser__Ast_invariants.cmti
+   ocaml5_parser__Ast_invariants.cmx
+   ocaml5_parser__Ast_iterator.cmi
+   ocaml5_parser__Ast_iterator.cmt
+   ocaml5_parser__Ast_iterator.cmti
+   ocaml5_parser__Ast_iterator.cmx
+   ocaml5_parser__Ast_mapper.cmi
+   ocaml5_parser__Ast_mapper.cmt
+   ocaml5_parser__Ast_mapper.cmti
+   ocaml5_parser__Ast_mapper.cmx
+   ocaml5_parser__Asttypes.cmi
+   ocaml5_parser__Asttypes.cmti
+   ocaml5_parser__Attr_helper.cmi
+   ocaml5_parser__Attr_helper.cmt
+   ocaml5_parser__Attr_helper.cmti
+   ocaml5_parser__Attr_helper.cmx
+   ocaml5_parser__Binutils.cmi
+   ocaml5_parser__Binutils.cmt
+   ocaml5_parser__Binutils.cmti
+   ocaml5_parser__Binutils.cmx
+   ocaml5_parser__Btype.cmi
+   ocaml5_parser__Btype.cmt
+   ocaml5_parser__Btype.cmti
+   ocaml5_parser__Btype.cmx
+   ocaml5_parser__Build_path_prefix_map.cmi
+   ocaml5_parser__Build_path_prefix_map.cmt
+   ocaml5_parser__Build_path_prefix_map.cmti
+   ocaml5_parser__Build_path_prefix_map.cmx
+   ocaml5_parser__Builtin_attributes.cmi
+   ocaml5_parser__Builtin_attributes.cmt
+   ocaml5_parser__Builtin_attributes.cmti
+   ocaml5_parser__Builtin_attributes.cmx
+   ocaml5_parser__CamlinternalMenhirLib.cmi
+   ocaml5_parser__CamlinternalMenhirLib.cmt
+   ocaml5_parser__CamlinternalMenhirLib.cmti
+   ocaml5_parser__CamlinternalMenhirLib.cmx
+   ocaml5_parser__Ccomp.cmi
+   ocaml5_parser__Ccomp.cmt
+   ocaml5_parser__Ccomp.cmti
+   ocaml5_parser__Ccomp.cmx
+   ocaml5_parser__Clflags.cmi
+   ocaml5_parser__Clflags.cmt
+   ocaml5_parser__Clflags.cmti
+   ocaml5_parser__Clflags.cmx
+   ocaml5_parser__Cmi_format.cmi
+   ocaml5_parser__Cmi_format.cmt
+   ocaml5_parser__Cmi_format.cmti
+   ocaml5_parser__Cmi_format.cmx
+   ocaml5_parser__Cmt2annot.cmi
+   ocaml5_parser__Cmt2annot.cmt
+   ocaml5_parser__Cmt2annot.cmx
+   ocaml5_parser__Cmt_format.cmi
+   ocaml5_parser__Cmt_format.cmt
+   ocaml5_parser__Cmt_format.cmti
+   ocaml5_parser__Cmt_format.cmx
+   ocaml5_parser__Config.cmi
+   ocaml5_parser__Config.cmt
+   ocaml5_parser__Config.cmti
+   ocaml5_parser__Config.cmx
+   ocaml5_parser__Consistbl.cmi
+   ocaml5_parser__Consistbl.cmt
+   ocaml5_parser__Consistbl.cmti
+   ocaml5_parser__Consistbl.cmx
+   ocaml5_parser__Ctype.cmi
+   ocaml5_parser__Ctype.cmt
+   ocaml5_parser__Ctype.cmti
+   ocaml5_parser__Ctype.cmx
+   ocaml5_parser__Datarepr.cmi
+   ocaml5_parser__Datarepr.cmt
+   ocaml5_parser__Datarepr.cmti
+   ocaml5_parser__Datarepr.cmx
+   ocaml5_parser__Depend.cmi
+   ocaml5_parser__Depend.cmt
+   ocaml5_parser__Depend.cmti
+   ocaml5_parser__Depend.cmx
+   ocaml5_parser__Diffing.cmi
+   ocaml5_parser__Diffing.cmt
+   ocaml5_parser__Diffing.cmti
+   ocaml5_parser__Diffing.cmx
+   ocaml5_parser__Diffing_with_keys.cmi
+   ocaml5_parser__Diffing_with_keys.cmt
+   ocaml5_parser__Diffing_with_keys.cmti
+   ocaml5_parser__Diffing_with_keys.cmx
+   ocaml5_parser__Docstrings.cmi
+   ocaml5_parser__Docstrings.cmt
+   ocaml5_parser__Docstrings.cmti
+   ocaml5_parser__Docstrings.cmx
+   ocaml5_parser__Env.cmi
+   ocaml5_parser__Env.cmt
+   ocaml5_parser__Env.cmti
+   ocaml5_parser__Env.cmx
+   ocaml5_parser__Envaux.cmi
+   ocaml5_parser__Envaux.cmt
+   ocaml5_parser__Envaux.cmti
+   ocaml5_parser__Envaux.cmx
+   ocaml5_parser__Errortrace.cmi
+   ocaml5_parser__Errortrace.cmt
+   ocaml5_parser__Errortrace.cmti
+   ocaml5_parser__Errortrace.cmx
+   ocaml5_parser__Frontend.cmi
+   ocaml5_parser__Frontend.cmt
+   ocaml5_parser__Frontend.cmti
+   ocaml5_parser__Frontend.cmx
+   ocaml5_parser__Ident.cmi
+   ocaml5_parser__Ident.cmt
+   ocaml5_parser__Ident.cmti
+   ocaml5_parser__Ident.cmx
+   ocaml5_parser__Identifiable.cmi
+   ocaml5_parser__Identifiable.cmt
+   ocaml5_parser__Identifiable.cmti
+   ocaml5_parser__Identifiable.cmx
+   ocaml5_parser__Includeclass.cmi
+   ocaml5_parser__Includeclass.cmt
+   ocaml5_parser__Includeclass.cmti
+   ocaml5_parser__Includeclass.cmx
+   ocaml5_parser__Includecore.cmi
+   ocaml5_parser__Includecore.cmt
+   ocaml5_parser__Includecore.cmti
+   ocaml5_parser__Includecore.cmx
+   ocaml5_parser__Includemod.cmi
+   ocaml5_parser__Includemod.cmt
+   ocaml5_parser__Includemod.cmti
+   ocaml5_parser__Includemod.cmx
+   ocaml5_parser__Includemod_errorprinter.cmi
+   ocaml5_parser__Includemod_errorprinter.cmt
+   ocaml5_parser__Includemod_errorprinter.cmti
+   ocaml5_parser__Includemod_errorprinter.cmx
+   ocaml5_parser__Int_replace_polymorphic_compare.cmi
+   ocaml5_parser__Int_replace_polymorphic_compare.cmt
+   ocaml5_parser__Int_replace_polymorphic_compare.cmti
+   ocaml5_parser__Int_replace_polymorphic_compare.cmx
+   ocaml5_parser__Lazy_backtrack.cmi
+   ocaml5_parser__Lazy_backtrack.cmt
+   ocaml5_parser__Lazy_backtrack.cmti
+   ocaml5_parser__Lazy_backtrack.cmx
+   ocaml5_parser__Lexer.cmi
+   ocaml5_parser__Lexer.cmt
+   ocaml5_parser__Lexer.cmti
+   ocaml5_parser__Lexer.cmx
+   ocaml5_parser__Load_path.cmi
+   ocaml5_parser__Load_path.cmt
+   ocaml5_parser__Load_path.cmti
+   ocaml5_parser__Load_path.cmx
+   ocaml5_parser__Local_store.cmi
+   ocaml5_parser__Local_store.cmt
+   ocaml5_parser__Local_store.cmti
+   ocaml5_parser__Local_store.cmx
+   ocaml5_parser__Location.cmi
+   ocaml5_parser__Location.cmt
+   ocaml5_parser__Location.cmti
+   ocaml5_parser__Location.cmx
+   ocaml5_parser__Longident.cmi
+   ocaml5_parser__Longident.cmt
+   ocaml5_parser__Longident.cmti
+   ocaml5_parser__Longident.cmx
+   ocaml5_parser__Misc.cmi
+   ocaml5_parser__Misc.cmt
+   ocaml5_parser__Misc.cmti
+   ocaml5_parser__Misc.cmx
+   ocaml5_parser__Mtype.cmi
+   ocaml5_parser__Mtype.cmt
+   ocaml5_parser__Mtype.cmti
+   ocaml5_parser__Mtype.cmx
+   ocaml5_parser__Numbers.cmi
+   ocaml5_parser__Numbers.cmt
+   ocaml5_parser__Numbers.cmti
+   ocaml5_parser__Numbers.cmx
+   ocaml5_parser__Oprint.cmi
+   ocaml5_parser__Oprint.cmt
+   ocaml5_parser__Oprint.cmti
+   ocaml5_parser__Oprint.cmx
+   ocaml5_parser__Outcometree.cmi
+   ocaml5_parser__Outcometree.cmti
+   ocaml5_parser__Parmatch.cmi
+   ocaml5_parser__Parmatch.cmt
+   ocaml5_parser__Parmatch.cmti
+   ocaml5_parser__Parmatch.cmx
+   ocaml5_parser__Parse.cmi
+   ocaml5_parser__Parse.cmt
+   ocaml5_parser__Parse.cmti
+   ocaml5_parser__Parse.cmx
+   ocaml5_parser__Parser.cmi
+   ocaml5_parser__Parser.cmt
+   ocaml5_parser__Parser.cmti
+   ocaml5_parser__Parser.cmx
+   ocaml5_parser__Parsetree.cmi
+   ocaml5_parser__Parsetree.cmti
+   ocaml5_parser__Path.cmi
+   ocaml5_parser__Path.cmt
+   ocaml5_parser__Path.cmti
+   ocaml5_parser__Path.cmx
+   ocaml5_parser__Patterns.cmi
+   ocaml5_parser__Patterns.cmt
+   ocaml5_parser__Patterns.cmti
+   ocaml5_parser__Patterns.cmx
+   ocaml5_parser__Persistent_env.cmi
+   ocaml5_parser__Persistent_env.cmt
+   ocaml5_parser__Persistent_env.cmti
+   ocaml5_parser__Persistent_env.cmx
+   ocaml5_parser__Pparse.cmi
+   ocaml5_parser__Pparse.cmt
+   ocaml5_parser__Pparse.cmti
+   ocaml5_parser__Pparse.cmx
+   ocaml5_parser__Pprintast.cmi
+   ocaml5_parser__Pprintast.cmt
+   ocaml5_parser__Pprintast.cmti
+   ocaml5_parser__Pprintast.cmx
+   ocaml5_parser__Predef.cmi
+   ocaml5_parser__Predef.cmt
+   ocaml5_parser__Predef.cmti
+   ocaml5_parser__Predef.cmx
+   ocaml5_parser__Primitive.cmi
+   ocaml5_parser__Primitive.cmt
+   ocaml5_parser__Primitive.cmti
+   ocaml5_parser__Primitive.cmx
+   ocaml5_parser__Printast.cmi
+   ocaml5_parser__Printast.cmt
+   ocaml5_parser__Printast.cmti
+   ocaml5_parser__Printast.cmx
+   ocaml5_parser__Printpat.cmi
+   ocaml5_parser__Printpat.cmt
+   ocaml5_parser__Printpat.cmti
+   ocaml5_parser__Printpat.cmx
+   ocaml5_parser__Printtyp.cmi
+   ocaml5_parser__Printtyp.cmt
+   ocaml5_parser__Printtyp.cmti
+   ocaml5_parser__Printtyp.cmx
+   ocaml5_parser__Printtyped.cmi
+   ocaml5_parser__Printtyped.cmt
+   ocaml5_parser__Printtyped.cmti
+   ocaml5_parser__Printtyped.cmx
+   ocaml5_parser__Profile.cmi
+   ocaml5_parser__Profile.cmt
+   ocaml5_parser__Profile.cmti
+   ocaml5_parser__Profile.cmx
+   ocaml5_parser__Rec_check.cmi
+   ocaml5_parser__Rec_check.cmt
+   ocaml5_parser__Rec_check.cmti
+   ocaml5_parser__Rec_check.cmx
+   ocaml5_parser__Shape.cmi
+   ocaml5_parser__Shape.cmt
+   ocaml5_parser__Shape.cmti
+   ocaml5_parser__Shape.cmx
+   ocaml5_parser__Signature_group.cmi
+   ocaml5_parser__Signature_group.cmt
+   ocaml5_parser__Signature_group.cmti
+   ocaml5_parser__Signature_group.cmx
+   ocaml5_parser__Strongly_connected_components.cmi
+   ocaml5_parser__Strongly_connected_components.cmt
+   ocaml5_parser__Strongly_connected_components.cmti
+   ocaml5_parser__Strongly_connected_components.cmx
+   ocaml5_parser__Stypes.cmi
+   ocaml5_parser__Stypes.cmt
+   ocaml5_parser__Stypes.cmti
+   ocaml5_parser__Stypes.cmx
+   ocaml5_parser__Subst.cmi
+   ocaml5_parser__Subst.cmt
+   ocaml5_parser__Subst.cmti
+   ocaml5_parser__Subst.cmx
+   ocaml5_parser__Syntaxerr.cmi
+   ocaml5_parser__Syntaxerr.cmt
+   ocaml5_parser__Syntaxerr.cmti
+   ocaml5_parser__Syntaxerr.cmx
+   ocaml5_parser__Targetint.cmi
+   ocaml5_parser__Targetint.cmt
+   ocaml5_parser__Targetint.cmti
+   ocaml5_parser__Targetint.cmx
+   ocaml5_parser__Tast_iterator.cmi
+   ocaml5_parser__Tast_iterator.cmt
+   ocaml5_parser__Tast_iterator.cmti
+   ocaml5_parser__Tast_iterator.cmx
+   ocaml5_parser__Tast_mapper.cmi
+   ocaml5_parser__Tast_mapper.cmt
+   ocaml5_parser__Tast_mapper.cmti
+   ocaml5_parser__Tast_mapper.cmx
+   ocaml5_parser__Terminfo.cmi
+   ocaml5_parser__Terminfo.cmt
+   ocaml5_parser__Terminfo.cmti
+   ocaml5_parser__Terminfo.cmx
+   ocaml5_parser__Type_immediacy.cmi
+   ocaml5_parser__Type_immediacy.cmt
+   ocaml5_parser__Type_immediacy.cmti
+   ocaml5_parser__Type_immediacy.cmx
+   ocaml5_parser__Typeclass.cmi
+   ocaml5_parser__Typeclass.cmt
+   ocaml5_parser__Typeclass.cmti
+   ocaml5_parser__Typeclass.cmx
+   ocaml5_parser__Typecore.cmi
+   ocaml5_parser__Typecore.cmt
+   ocaml5_parser__Typecore.cmti
+   ocaml5_parser__Typecore.cmx
+   ocaml5_parser__Typedecl.cmi
+   ocaml5_parser__Typedecl.cmt
+   ocaml5_parser__Typedecl.cmti
+   ocaml5_parser__Typedecl.cmx
+   ocaml5_parser__Typedecl_immediacy.cmi
+   ocaml5_parser__Typedecl_immediacy.cmt
+   ocaml5_parser__Typedecl_immediacy.cmti
+   ocaml5_parser__Typedecl_immediacy.cmx
+   ocaml5_parser__Typedecl_properties.cmi
+   ocaml5_parser__Typedecl_properties.cmt
+   ocaml5_parser__Typedecl_properties.cmti
+   ocaml5_parser__Typedecl_properties.cmx
+   ocaml5_parser__Typedecl_separability.cmi
+   ocaml5_parser__Typedecl_separability.cmt
+   ocaml5_parser__Typedecl_separability.cmti
+   ocaml5_parser__Typedecl_separability.cmx
+   ocaml5_parser__Typedecl_unboxed.cmi
+   ocaml5_parser__Typedecl_unboxed.cmt
+   ocaml5_parser__Typedecl_unboxed.cmti
+   ocaml5_parser__Typedecl_unboxed.cmx
+   ocaml5_parser__Typedecl_variance.cmi
+   ocaml5_parser__Typedecl_variance.cmt
+   ocaml5_parser__Typedecl_variance.cmti
+   ocaml5_parser__Typedecl_variance.cmx
+   ocaml5_parser__Typedtree.cmi
+   ocaml5_parser__Typedtree.cmt
+   ocaml5_parser__Typedtree.cmti
+   ocaml5_parser__Typedtree.cmx
+   ocaml5_parser__Typemod.cmi
+   ocaml5_parser__Typemod.cmt
+   ocaml5_parser__Typemod.cmti
+   ocaml5_parser__Typemod.cmx
+   ocaml5_parser__Types.cmi
+   ocaml5_parser__Types.cmt
+   ocaml5_parser__Types.cmti
+   ocaml5_parser__Types.cmx
+   ocaml5_parser__Typetexp.cmi
+   ocaml5_parser__Typetexp.cmt
+   ocaml5_parser__Typetexp.cmti
+   ocaml5_parser__Typetexp.cmx
+   ocaml5_parser__Untypeast.cmi
+   ocaml5_parser__Untypeast.cmt
+   ocaml5_parser__Untypeast.cmti
+   ocaml5_parser__Untypeast.cmx
+   ocaml5_parser__Warnings.cmi
+   ocaml5_parser__Warnings.cmt
+   ocaml5_parser__Warnings.cmti
+   ocaml5_parser__Warnings.cmx
+   ocaml5_parser__Zint.cmi
+   ocaml5_parser__Zint.cmt
+   ocaml5_parser__Zint.cmx
+   ocaml5_parser__Zstring.cmi
+   ocaml5_parser__Zstring.cmt
+   ocaml5_parser__Zstring.cmx
+   ocaml5_parser__Zsys.cmi
+   ocaml5_parser__Zsys.cmt
+   ocaml5_parser__Zsys.cmx
+   opam
+   oprint.ml
+   oprint.mli
+   outcometree.mli
+   parmatch.ml
+   parmatch.mli
+   parse.ml
+   parse.mli
+   parser.ml
+   parser.mli
+   parsetree.mli
+   path.ml
+   path.mli
+   patterns.ml
+   patterns.mli
+   persistent_env.ml
+   persistent_env.mli
+   pparse.ml
+   pparse.mli
+   pprintast.ml
+   pprintast.mli
+   predef.ml
+   predef.mli
+   primitive.ml
+   primitive.mli
+   printast.ml
+   printast.mli
+   printpat.ml
+   printpat.mli
+   printtyp.ml
+   printtyp.mli
+   printtyped.ml
+   printtyped.mli
+   profile.ml
+   profile.mli
+   rec_check.ml
+   rec_check.mli
+   shape.ml
+   shape.mli
+   signature_group.ml
+   signature_group.mli
+   strongly_connected_components.ml
+   strongly_connected_components.mli
+   stypes.ml
+   stypes.mli
+   subst.ml
+   subst.mli
+   syntaxerr.ml
+   syntaxerr.mli
+   targetint.ml
+   targetint.mli
+   tast_iterator.ml
+   tast_iterator.mli
+   tast_mapper.ml
+   tast_mapper.mli
+   terminfo.ml
+   terminfo.mli
+   type_immediacy.ml
+   type_immediacy.mli
+   typeclass.ml
+   typeclass.mli
+   typecore.ml
+   typecore.mli
+   typedecl.ml
+   typedecl.mli
+   typedecl_immediacy.ml
+   typedecl_immediacy.mli
+   typedecl_properties.ml
+   typedecl_properties.mli
+   typedecl_separability.ml
+   typedecl_separability.mli
+   typedecl_unboxed.ml
+   typedecl_unboxed.mli
+   typedecl_variance.ml
+   typedecl_variance.mli
+   typedtree.ml
+   typedtree.mli
+   typemod.ml
+   typemod.mli
+   types.ml
+   types.mli
+   typetexp.ml
+   typetexp.mli
+   untypeast.ml
+   untypeast.mli
+   warnings.ml
+   warnings.mli
+   zint.ml
+   zstring.ml
+   zsys.ml))
+ (libexec (ocaml5_parser.cmxs))
+ (doc (LICENSE README.md)))
+(library
+ (name ocaml5_parser)
+ (kind normal)
+ (archives (byte ocaml5_parser.cma) (native ocaml5_parser.cmxa))
+ (plugins (byte ocaml5_parser.cma) (native ocaml5_parser.cmxs))
+ (native_archives ocaml5_parser.a)
+ (main_module_name Ocaml5_parser)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name ocaml5_parser)
+     (visibility public)
+     (kind alias)
+     (source (path Ocaml5_parser) (impl (path ocaml5_parser.ml-gen))))
+    (name Ocaml5_parser)
+    (modules
+     (module
+      (obj_name ocaml5_parser__Annot)
+      (visibility public)
+      (source (path Annot) (intf (path annot.mli))))
+     (module
+      (obj_name ocaml5_parser__Arg_helper)
+      (visibility public)
+      (source
+       (path Arg_helper)
+       (intf (path arg_helper.mli))
+       (impl (path arg_helper.ml))))
+     (module
+      (obj_name ocaml5_parser__Ast_helper)
+      (visibility public)
+      (source
+       (path Ast_helper)
+       (intf (path ast_helper.mli))
+       (impl (path ast_helper.ml))))
+     (module
+      (obj_name ocaml5_parser__Ast_invariants)
+      (visibility public)
+      (source
+       (path Ast_invariants)
+       (intf (path ast_invariants.mli))
+       (impl (path ast_invariants.ml))))
+     (module
+      (obj_name ocaml5_parser__Ast_iterator)
+      (visibility public)
+      (source
+       (path Ast_iterator)
+       (intf (path ast_iterator.mli))
+       (impl (path ast_iterator.ml))))
+     (module
+      (obj_name ocaml5_parser__Ast_mapper)
+      (visibility public)
+      (source
+       (path Ast_mapper)
+       (intf (path ast_mapper.mli))
+       (impl (path ast_mapper.ml))))
+     (module
+      (obj_name ocaml5_parser__Asttypes)
+      (visibility public)
+      (source (path Asttypes) (intf (path asttypes.mli))))
+     (module
+      (obj_name ocaml5_parser__Attr_helper)
+      (visibility public)
+      (source
+       (path Attr_helper)
+       (intf (path attr_helper.mli))
+       (impl (path attr_helper.ml))))
+     (module
+      (obj_name ocaml5_parser__Binutils)
+      (visibility public)
+      (source
+       (path Binutils)
+       (intf (path binutils.mli))
+       (impl (path binutils.ml))))
+     (module
+      (obj_name ocaml5_parser__Btype)
+      (visibility public)
+      (source (path Btype) (intf (path btype.mli)) (impl (path btype.ml))))
+     (module
+      (obj_name ocaml5_parser__Build_path_prefix_map)
+      (visibility public)
+      (source
+       (path Build_path_prefix_map)
+       (intf (path build_path_prefix_map.mli))
+       (impl (path build_path_prefix_map.ml))))
+     (module
+      (obj_name ocaml5_parser__Builtin_attributes)
+      (visibility public)
+      (source
+       (path Builtin_attributes)
+       (intf (path builtin_attributes.mli))
+       (impl (path builtin_attributes.ml))))
+     (module
+      (obj_name ocaml5_parser__CamlinternalMenhirLib)
+      (visibility public)
+      (source
+       (path CamlinternalMenhirLib)
+       (intf (path camlinternalMenhirLib.mli))
+       (impl (path camlinternalMenhirLib.ml))))
+     (module
+      (obj_name ocaml5_parser__Ccomp)
+      (visibility public)
+      (source (path Ccomp) (intf (path ccomp.mli)) (impl (path ccomp.ml))))
+     (module
+      (obj_name ocaml5_parser__Clflags)
+      (visibility public)
+      (source
+       (path Clflags)
+       (intf (path clflags.mli))
+       (impl (path clflags.ml))))
+     (module
+      (obj_name ocaml5_parser__Cmi_format)
+      (visibility public)
+      (source
+       (path Cmi_format)
+       (intf (path cmi_format.mli))
+       (impl (path cmi_format.ml))))
+     (module
+      (obj_name ocaml5_parser__Cmt2annot)
+      (visibility public)
+      (source (path Cmt2annot) (impl (path cmt2annot.ml))))
+     (module
+      (obj_name ocaml5_parser__Cmt_format)
+      (visibility public)
+      (source
+       (path Cmt_format)
+       (intf (path cmt_format.mli))
+       (impl (path cmt_format.ml))))
+     (module
+      (obj_name ocaml5_parser__Config)
+      (visibility public)
+      (source (path Config) (intf (path config.mli)) (impl (path config.ml))))
+     (module
+      (obj_name ocaml5_parser__Consistbl)
+      (visibility public)
+      (source
+       (path Consistbl)
+       (intf (path consistbl.mli))
+       (impl (path consistbl.ml))))
+     (module
+      (obj_name ocaml5_parser__Ctype)
+      (visibility public)
+      (source (path Ctype) (intf (path ctype.mli)) (impl (path ctype.ml))))
+     (module
+      (obj_name ocaml5_parser__Datarepr)
+      (visibility public)
+      (source
+       (path Datarepr)
+       (intf (path datarepr.mli))
+       (impl (path datarepr.ml))))
+     (module
+      (obj_name ocaml5_parser__Depend)
+      (visibility public)
+      (source (path Depend) (intf (path depend.mli)) (impl (path depend.ml))))
+     (module
+      (obj_name ocaml5_parser__Diffing)
+      (visibility public)
+      (source
+       (path Diffing)
+       (intf (path diffing.mli))
+       (impl (path diffing.ml))))
+     (module
+      (obj_name ocaml5_parser__Diffing_with_keys)
+      (visibility public)
+      (source
+       (path Diffing_with_keys)
+       (intf (path diffing_with_keys.mli))
+       (impl (path diffing_with_keys.ml))))
+     (module
+      (obj_name ocaml5_parser__Docstrings)
+      (visibility public)
+      (source
+       (path Docstrings)
+       (intf (path docstrings.mli))
+       (impl (path docstrings.ml))))
+     (module
+      (obj_name ocaml5_parser__Env)
+      (visibility public)
+      (source (path Env) (intf (path env.mli)) (impl (path env.ml))))
+     (module
+      (obj_name ocaml5_parser__Envaux)
+      (visibility public)
+      (source (path Envaux) (intf (path envaux.mli)) (impl (path envaux.ml))))
+     (module
+      (obj_name ocaml5_parser__Errortrace)
+      (visibility public)
+      (source
+       (path Errortrace)
+       (intf (path errortrace.mli))
+       (impl (path errortrace.ml))))
+     (module
+      (obj_name ocaml5_parser__Frontend)
+      (visibility public)
+      (source
+       (path Frontend)
+       (intf (path frontend.mli))
+       (impl (path frontend.ml))))
+     (module
+      (obj_name ocaml5_parser__Ident)
+      (visibility public)
+      (source (path Ident) (intf (path ident.mli)) (impl (path ident.ml))))
+     (module
+      (obj_name ocaml5_parser__Identifiable)
+      (visibility public)
+      (source
+       (path Identifiable)
+       (intf (path identifiable.mli))
+       (impl (path identifiable.ml))))
+     (module
+      (obj_name ocaml5_parser__Includeclass)
+      (visibility public)
+      (source
+       (path Includeclass)
+       (intf (path includeclass.mli))
+       (impl (path includeclass.ml))))
+     (module
+      (obj_name ocaml5_parser__Includecore)
+      (visibility public)
+      (source
+       (path Includecore)
+       (intf (path includecore.mli))
+       (impl (path includecore.ml))))
+     (module
+      (obj_name ocaml5_parser__Includemod)
+      (visibility public)
+      (source
+       (path Includemod)
+       (intf (path includemod.mli))
+       (impl (path includemod.ml))))
+     (module
+      (obj_name ocaml5_parser__Includemod_errorprinter)
+      (visibility public)
+      (source
+       (path Includemod_errorprinter)
+       (intf (path includemod_errorprinter.mli))
+       (impl (path includemod_errorprinter.ml))))
+     (module
+      (obj_name ocaml5_parser__Int_replace_polymorphic_compare)
+      (visibility public)
+      (source
+       (path Int_replace_polymorphic_compare)
+       (intf (path int_replace_polymorphic_compare.mli))
+       (impl (path int_replace_polymorphic_compare.ml))))
+     (module
+      (obj_name ocaml5_parser__Lazy_backtrack)
+      (visibility public)
+      (source
+       (path Lazy_backtrack)
+       (intf (path lazy_backtrack.mli))
+       (impl (path lazy_backtrack.ml))))
+     (module
+      (obj_name ocaml5_parser__Lexer)
+      (visibility public)
+      (source (path Lexer) (intf (path lexer.mli)) (impl (path lexer.ml))))
+     (module
+      (obj_name ocaml5_parser__Load_path)
+      (visibility public)
+      (source
+       (path Load_path)
+       (intf (path load_path.mli))
+       (impl (path load_path.ml))))
+     (module
+      (obj_name ocaml5_parser__Local_store)
+      (visibility public)
+      (source
+       (path Local_store)
+       (intf (path local_store.mli))
+       (impl (path local_store.ml))))
+     (module
+      (obj_name ocaml5_parser__Location)
+      (visibility public)
+      (source
+       (path Location)
+       (intf (path location.mli))
+       (impl (path location.ml))))
+     (module
+      (obj_name ocaml5_parser__Longident)
+      (visibility public)
+      (source
+       (path Longident)
+       (intf (path longident.mli))
+       (impl (path longident.ml))))
+     (module
+      (obj_name ocaml5_parser__Misc)
+      (visibility public)
+      (source (path Misc) (intf (path misc.mli)) (impl (path misc.ml))))
+     (module
+      (obj_name ocaml5_parser__Mtype)
+      (visibility public)
+      (source (path Mtype) (intf (path mtype.mli)) (impl (path mtype.ml))))
+     (module
+      (obj_name ocaml5_parser__Numbers)
+      (visibility public)
+      (source
+       (path Numbers)
+       (intf (path numbers.mli))
+       (impl (path numbers.ml))))
+     (module
+      (obj_name ocaml5_parser__Oprint)
+      (visibility public)
+      (source (path Oprint) (intf (path oprint.mli)) (impl (path oprint.ml))))
+     (module
+      (obj_name ocaml5_parser__Outcometree)
+      (visibility public)
+      (source (path Outcometree) (intf (path outcometree.mli))))
+     (module
+      (obj_name ocaml5_parser__Parmatch)
+      (visibility public)
+      (source
+       (path Parmatch)
+       (intf (path parmatch.mli))
+       (impl (path parmatch.ml))))
+     (module
+      (obj_name ocaml5_parser__Parse)
+      (visibility public)
+      (source (path Parse) (intf (path parse.mli)) (impl (path parse.ml))))
+     (module
+      (obj_name ocaml5_parser__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name ocaml5_parser__Parsetree)
+      (visibility public)
+      (source (path Parsetree) (intf (path parsetree.mli))))
+     (module
+      (obj_name ocaml5_parser__Path)
+      (visibility public)
+      (source (path Path) (intf (path path.mli)) (impl (path path.ml))))
+     (module
+      (obj_name ocaml5_parser__Patterns)
+      (visibility public)
+      (source
+       (path Patterns)
+       (intf (path patterns.mli))
+       (impl (path patterns.ml))))
+     (module
+      (obj_name ocaml5_parser__Persistent_env)
+      (visibility public)
+      (source
+       (path Persistent_env)
+       (intf (path persistent_env.mli))
+       (impl (path persistent_env.ml))))
+     (module
+      (obj_name ocaml5_parser__Pparse)
+      (visibility public)
+      (source (path Pparse) (intf (path pparse.mli)) (impl (path pparse.ml))))
+     (module
+      (obj_name ocaml5_parser__Pprintast)
+      (visibility public)
+      (source
+       (path Pprintast)
+       (intf (path pprintast.mli))
+       (impl (path pprintast.ml))))
+     (module
+      (obj_name ocaml5_parser__Predef)
+      (visibility public)
+      (source (path Predef) (intf (path predef.mli)) (impl (path predef.ml))))
+     (module
+      (obj_name ocaml5_parser__Primitive)
+      (visibility public)
+      (source
+       (path Primitive)
+       (intf (path primitive.mli))
+       (impl (path primitive.ml))))
+     (module
+      (obj_name ocaml5_parser__Printast)
+      (visibility public)
+      (source
+       (path Printast)
+       (intf (path printast.mli))
+       (impl (path printast.ml))))
+     (module
+      (obj_name ocaml5_parser__Printpat)
+      (visibility public)
+      (source
+       (path Printpat)
+       (intf (path printpat.mli))
+       (impl (path printpat.ml))))
+     (module
+      (obj_name ocaml5_parser__Printtyp)
+      (visibility public)
+      (source
+       (path Printtyp)
+       (intf (path printtyp.mli))
+       (impl (path printtyp.ml))))
+     (module
+      (obj_name ocaml5_parser__Printtyped)
+      (visibility public)
+      (source
+       (path Printtyped)
+       (intf (path printtyped.mli))
+       (impl (path printtyped.ml))))
+     (module
+      (obj_name ocaml5_parser__Profile)
+      (visibility public)
+      (source
+       (path Profile)
+       (intf (path profile.mli))
+       (impl (path profile.ml))))
+     (module
+      (obj_name ocaml5_parser__Rec_check)
+      (visibility public)
+      (source
+       (path Rec_check)
+       (intf (path rec_check.mli))
+       (impl (path rec_check.ml))))
+     (module
+      (obj_name ocaml5_parser__Shape)
+      (visibility public)
+      (source (path Shape) (intf (path shape.mli)) (impl (path shape.ml))))
+     (module
+      (obj_name ocaml5_parser__Signature_group)
+      (visibility public)
+      (source
+       (path Signature_group)
+       (intf (path signature_group.mli))
+       (impl (path signature_group.ml))))
+     (module
+      (obj_name ocaml5_parser__Strongly_connected_components)
+      (visibility public)
+      (source
+       (path Strongly_connected_components)
+       (intf (path strongly_connected_components.mli))
+       (impl (path strongly_connected_components.ml))))
+     (module
+      (obj_name ocaml5_parser__Stypes)
+      (visibility public)
+      (source (path Stypes) (intf (path stypes.mli)) (impl (path stypes.ml))))
+     (module
+      (obj_name ocaml5_parser__Subst)
+      (visibility public)
+      (source (path Subst) (intf (path subst.mli)) (impl (path subst.ml))))
+     (module
+      (obj_name ocaml5_parser__Syntaxerr)
+      (visibility public)
+      (source
+       (path Syntaxerr)
+       (intf (path syntaxerr.mli))
+       (impl (path syntaxerr.ml))))
+     (module
+      (obj_name ocaml5_parser__Targetint)
+      (visibility public)
+      (source
+       (path Targetint)
+       (intf (path targetint.mli))
+       (impl (path targetint.ml))))
+     (module
+      (obj_name ocaml5_parser__Tast_iterator)
+      (visibility public)
+      (source
+       (path Tast_iterator)
+       (intf (path tast_iterator.mli))
+       (impl (path tast_iterator.ml))))
+     (module
+      (obj_name ocaml5_parser__Tast_mapper)
+      (visibility public)
+      (source
+       (path Tast_mapper)
+       (intf (path tast_mapper.mli))
+       (impl (path tast_mapper.ml))))
+     (module
+      (obj_name ocaml5_parser__Terminfo)
+      (visibility public)
+      (source
+       (path Terminfo)
+       (intf (path terminfo.mli))
+       (impl (path terminfo.ml))))
+     (module
+      (obj_name ocaml5_parser__Type_immediacy)
+      (visibility public)
+      (source
+       (path Type_immediacy)
+       (intf (path type_immediacy.mli))
+       (impl (path type_immediacy.ml))))
+     (module
+      (obj_name ocaml5_parser__Typeclass)
+      (visibility public)
+      (source
+       (path Typeclass)
+       (intf (path typeclass.mli))
+       (impl (path typeclass.ml))))
+     (module
+      (obj_name ocaml5_parser__Typecore)
+      (visibility public)
+      (source
+       (path Typecore)
+       (intf (path typecore.mli))
+       (impl (path typecore.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl)
+      (visibility public)
+      (source
+       (path Typedecl)
+       (intf (path typedecl.mli))
+       (impl (path typedecl.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl_immediacy)
+      (visibility public)
+      (source
+       (path Typedecl_immediacy)
+       (intf (path typedecl_immediacy.mli))
+       (impl (path typedecl_immediacy.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl_properties)
+      (visibility public)
+      (source
+       (path Typedecl_properties)
+       (intf (path typedecl_properties.mli))
+       (impl (path typedecl_properties.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl_separability)
+      (visibility public)
+      (source
+       (path Typedecl_separability)
+       (intf (path typedecl_separability.mli))
+       (impl (path typedecl_separability.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl_unboxed)
+      (visibility public)
+      (source
+       (path Typedecl_unboxed)
+       (intf (path typedecl_unboxed.mli))
+       (impl (path typedecl_unboxed.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedecl_variance)
+      (visibility public)
+      (source
+       (path Typedecl_variance)
+       (intf (path typedecl_variance.mli))
+       (impl (path typedecl_variance.ml))))
+     (module
+      (obj_name ocaml5_parser__Typedtree)
+      (visibility public)
+      (source
+       (path Typedtree)
+       (intf (path typedtree.mli))
+       (impl (path typedtree.ml))))
+     (module
+      (obj_name ocaml5_parser__Typemod)
+      (visibility public)
+      (source
+       (path Typemod)
+       (intf (path typemod.mli))
+       (impl (path typemod.ml))))
+     (module
+      (obj_name ocaml5_parser__Types)
+      (visibility public)
+      (source (path Types) (intf (path types.mli)) (impl (path types.ml))))
+     (module
+      (obj_name ocaml5_parser__Typetexp)
+      (visibility public)
+      (source
+       (path Typetexp)
+       (intf (path typetexp.mli))
+       (impl (path typetexp.ml))))
+     (module
+      (obj_name ocaml5_parser__Untypeast)
+      (visibility public)
+      (source
+       (path Untypeast)
+       (intf (path untypeast.mli))
+       (impl (path untypeast.ml))))
+     (module
+      (obj_name ocaml5_parser__Warnings)
+      (visibility public)
+      (source
+       (path Warnings)
+       (intf (path warnings.mli))
+       (impl (path warnings.ml))))
+     (module
+      (obj_name ocaml5_parser__Zint)
+      (visibility public)
+      (source (path Zint) (impl (path zint.ml))))
+     (module
+      (obj_name ocaml5_parser__Zstring)
+      (visibility public)
+      (source (path Zstring) (impl (path zstring.ml))))
+     (module
+      (obj_name ocaml5_parser__Zsys)
+      (visibility public)
+      (source (path Zsys) (impl (path zsys.ml))))))
+   (wrapped true))))

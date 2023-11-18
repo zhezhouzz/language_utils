@@ -1,0 +1,7 @@
+version = "0.1"
+description = ""
+requires = ""
+archive(byte) = "ocaml5_parser.cma"
+archive(native) = "ocaml5_parser.cmxa"
+plugin(byte) = "ocaml5_parser.cma"
+plugin(native) = "ocaml5_parser.cmxs"
