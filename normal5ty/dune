@@ -1,5 +1,6 @@
 (library
  (name normal5ty)
+ (public_name language_utils.normal5ty)
  (wrapped false)
  (modules_without_implementation)
  (libraries utils core ocaml5_parser)

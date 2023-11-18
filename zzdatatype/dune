@@ -1,5 +1,6 @@
 (library
  (name zzdatatype)
+ (public_name language_utils.zzdatatype)
  (libraries core)
  (modules
    zarray
