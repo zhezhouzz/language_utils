@@ -1,4 +1,0 @@
-(library
- (public_name language_utils)
- (name language_utils)
-)
