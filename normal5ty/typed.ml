@@ -49,6 +49,17 @@ module Nt = struct
   let _type_unify_ = __type_unify_ Frontend.layout
 end
 
+module NotateT = struct
+  include Notatet
+
+  let layout x = Frontend.layout (snd x)
+  let layout_l x = Frontend.layout_l (List.map snd x)
+  let layout_coretype = Frontend.layout_
+  let of_string = Frontend.of_string
+  let _type_unify _ = failwith "never"
+  let _type_unify_ _ = failwith "never"
+end
+
 module Ntopt = struct
   include Ntopt
 
@@ -74,4 +85,9 @@ end
 module NOpttyped = struct
   include F (Ntopt)
   include Ntopt
+end
+
+module Notatedtyped = struct
+  include F (NotateT)
+  include NotateT
 end
