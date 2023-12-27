@@ -18,6 +18,7 @@ module type T = sig
   val layout_typed : ('a -> string) -> 'a typed -> string
   val layout_typed_l : ('a -> string) -> 'a typed list -> string
   val to_smttyped : 'a typed -> 'a SMTtyped.typed
+  val typed_eq: string typed -> string typed -> bool
 end
 
 module F (Ty : T.T) : T with type t = Ty.t = struct
@@ -36,6 +37,7 @@ module F (Ty : T.T) : T with type t = Ty.t = struct
     Zzdatatype.Datatype.List.split_by_comma (layout_typed f) l
 
   let to_smttyped { x; ty } = SMTtyped.{ x; ty = to_smtty ty }
+  let typed_eq a b = String.equal a.x b.x && eq a.ty b.ty
 end
 
 module Nt = struct
