@@ -91,6 +91,18 @@ and t_to_core_type_desc t =
   in
   aux t
 
+let core_type_to_notated_t ct =
+  match ct.ptyp_desc with
+  | Ptyp_extension (name, PTyp ty) -> (Some name.txt, core_type_to_t ty)
+  | _ -> (None, core_type_to_t ct)
+
+let notated_t_to_core_type (name, t) =
+  let ct = t_to_core_type t in
+  match name with
+  | None -> ct
+  | Some name -> desc_to_ct (Ptyp_extension (Location.mknoloc name, PTyp ct))
+
+
 let layout t = layout_ (t_to_core_type t)
 let of_string str = core_type_to_t @@ Parse.core_type @@ Lexing.from_string str
 let layout_l ts = Zzdatatype.Datatype.List.split_by_comma layout ts
