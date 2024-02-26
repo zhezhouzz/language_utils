@@ -41,7 +41,13 @@ let handle_type_declaration predefine (sourcefile : string) : string =
     @@ List.map (Mksubstinstance.mk predefine)
     @@ StrMap.to_kv_list ctx
   in
-  let res = res @ fvid_code @ substInstance_code in
+  let compare_code =
+    List.concat @@ List.map (Mkcompare.mk predefine) @@ StrMap.to_kv_list ctx
+  in
+  let eq_code =
+    List.concat @@ List.map (Mkequal.mk predefine) @@ StrMap.to_kv_list ctx
+  in
+  let res = res @ fvid_code @ substInstance_code @ compare_code @ eq_code in
   let res = Pprintast.string_of_structure res in
   let sourcefile = List.last @@ String.split_on_char '/' sourcefile in
   Printf.sprintf "%s\n(* Generated from %s *)\n" res sourcefile
@@ -54,7 +60,7 @@ let%test "test" =
       ]
   in
   let dir = "/Users/zhezhou/workspace/research/language_utils/metalang/" in
-  let res = handle_type_declaration _predefine (dir ^ "_raw_term.ml") in
+  let res = handle_type_declaration _predefine (dir ^ "_rty.ml") in
   let oc = open_out (dir ^ "test.ml") in
   Printf.fprintf oc "%s\n" res;
   close_out oc;
