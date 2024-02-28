@@ -116,7 +116,7 @@ let mktuple es = desc_to_ocamlexpr @@ Pexp_tuple es
 
 let mk_vb (lhs, rhs) =
   {
-    pvb_pat = string_to_pattern lhs;
+    pvb_pat = lhs;
     pvb_expr = rhs;
     pvb_attributes = [];
     pvb_loc = Location.none;
@@ -139,7 +139,7 @@ let mk_multi_rec_funcdef_args l =
       (fun (fname, args, body) ->
         let args = List.map st_to_pattern args in
         let body = List.fold_right mklam args body in
-        mk_vb (fname, body))
+        mk_vb (string_to_pattern fname, body))
       l
   in
   mk_rec_valuedef l
@@ -152,11 +152,11 @@ let mk_rec_funcdef fname arg body = mk_rec_funcdef_args fname [ arg ] body
 let mk_funcdef_args (fname, args, body) =
   let args = List.map st_to_pattern args in
   let body = List.fold_right mklam args body in
-  mk_valuedef [ mk_vb (fname, body) ]
+  mk_valuedef [ mk_vb (string_to_pattern fname, body) ]
 
 let mk_funcdef fname (argname, ct) body =
   let argpat = typed_to_pattern (string_to_pattern argname, ct) in
-  mk_valuedef [ mk_vb (fname, mklam argpat body) ]
+  mk_valuedef [ mk_vb (string_to_pattern fname, mklam argpat body) ]
 
 let mk_match_case (lhs, exp) = { pc_lhs = lhs; pc_guard = None; pc_rhs = exp }
 
