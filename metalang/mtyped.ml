@@ -1,7 +1,9 @@
 type ('t, 'a) typed = { x : 'a; ty : 't } [@@deriving sexp]
 
 let ( #: ) x ty = { x; ty }
-let ( #-> ) { x; ty } f = (f x) #: ty
+
+let ( #-> ) : 't 'a 'b. ('t, 'a) typed -> ('a -> 'b) -> ('t, 'b) typed =
+ fun { x; ty } f -> (f x) #: ty
 
 let ( #=> ) : 't 's 'a. ('t, 'a) typed -> ('t -> 's) -> ('s, 'a) typed =
  fun { x; ty } f -> x #: (f ty)
