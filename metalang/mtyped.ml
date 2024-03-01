@@ -3,8 +3,8 @@ type ('t, 'a) typed = { x : 'a; ty : 't } [@@deriving sexp]
 let ( #: ) x ty = { x; ty }
 let ( #-> ) { x; ty } f = (f x) #: ty
 
-let ( #=> ) ({ x; ty } : ('t, 'a) typed) (f : 't -> 's) : ('s, 'a) typed =
-  x #: (f ty)
+let ( #=> ) : 't 's 'a. ('t, 'a) typed -> ('t -> 's) -> ('s, 'a) typed =
+ fun { x; ty } f -> x #: (f ty)
 
 let strict_typed_eq eq_t eq_x a b = eq_t a.ty b.ty && eq_x a.x b.x
 let typed_eq eq a b = eq a.x b.x
