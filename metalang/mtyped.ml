@@ -10,6 +10,11 @@ let ( #-> ) : 't 'a 'b. ('t, 'a) typed -> ('a -> 'b) -> ('t, 'b) typed =
 let ( #=> ) : 't 's 'a. ('t, 'a) typed -> ('t -> 's) -> ('s, 'a) typed =
  fun { x; ty } f -> x #: (f ty)
 
+let __force_typed file line { x; ty } =
+  match ty with
+  | Some ty -> x #: ty
+  | None -> Sugar._failatwith file line "binding variables must be typed"
+
 let strict_typed_eq eq_t eq_x a b = eq_t a.ty b.ty && eq_x a.x b.x
 let typed_eq eq a b = eq a.x b.x
 let fv_typed_id_to_id f e = List.map (fun x -> x.x) @@ f e
