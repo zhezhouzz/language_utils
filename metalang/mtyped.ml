@@ -1,5 +1,7 @@
 type ('t, 'a) typed = { x : 'a; ty : 't } [@@deriving sexp]
 
+let _get_ty x = x.ty
+let _get_x x = x.x
 let ( #: ) x ty = { x; ty }
 
 let ( #-> ) : 't 'a 'b. ('t, 'a) typed -> ('a -> 'b) -> ('t, 'b) typed =
