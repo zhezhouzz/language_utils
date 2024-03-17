@@ -115,6 +115,40 @@ let subst t (id, ty) =
 
 let subst_m m t = StrMap.fold (fun id ty t -> subst t (id, ty)) m t
 let layout t = Sexplib.Sexp.to_string @@ sexp_of_t t
+let subst_on_sol (i, t) m = StrMap.map (fun t' -> subst t' (i, t)) m
+
+let subst_on_cs (i, t) cs =
+  List.map (fun (t1, t2) -> (subst t1 (i, t), subst t2 (i, t))) cs
+
+let type_unification_v2 m (cs : (t * t) list) =
+  let rec aux m cs =
+    match cs with
+    | [] -> Some m
+    | (t1, t2) :: cs -> (
+        match (t1, t2) with
+        | Ty_any, _ | _, Ty_any | Ty_unknown, _ | _, Ty_unknown -> aux m cs
+        | Ty_var n, _ ->
+            let m = subst_on_sol (n, t2) m in
+            let cs = subst_on_cs (n, t2) cs in
+            aux (StrMap.add n t2 m) cs
+        | _, Ty_var n ->
+            let m = subst_on_sol (n, t1) m in
+            let cs = subst_on_cs (n, t1) cs in
+            aux (StrMap.add n t1 m) cs
+        | Ty_constructor (id1, ts1), Ty_constructor (id2, ts2) ->
+            if String.equal id1 id2 && List.length ts1 == List.length ts2 then
+              aux m (List.combine ts1 ts2 @ cs)
+            else None
+        | Ty_arrow (t11, t12), Ty_arrow (t21, t22) ->
+            aux m ((t11, t21) :: (t12, t22) :: cs)
+        (* unfold singleton tuple *)
+        | Ty_tuple [ t1 ], _ -> aux m ((t1, t2) :: cs)
+        | _, Ty_tuple [ t2 ] -> aux m ((t1, t2) :: cs)
+        | Ty_tuple ts1, Ty_tuple ts2 when List.length ts1 == List.length ts2 ->
+            aux m (List.combine ts1 ts2 @ cs)
+        | _, _ -> if eq t1 t2 then aux m cs else None)
+  in
+  aux m cs
 
 let __type_unify_ (pprint : t -> string) file line m t1 t2 =
   (* let () = Printf.printf "unify %s --> %s\n" (layout t1) (layout t2) in *)
@@ -162,12 +196,12 @@ let __type_unify_ (pprint : t -> string) file line m t1 t2 =
     | _, Ty_var _ ->
         (* (m, t1) *)
         _failatwith file line "argment should not contain type var"
-    | _, _ -> (
+    | _, _ ->
         ( m,
           try _check_equality file line eq t1 t2
           with e ->
             Printf.printf "%s != %s\n" (layout t1) (layout t2);
-            raise e ))
+            raise e )
   in
   try unify m (t1, t2)
   with e ->
@@ -175,5 +209,22 @@ let __type_unify_ (pprint : t -> string) file line m t1 t2 =
     Printf.printf "Precisely: %s ==> %s\n" (layout t1) (layout t2);
     raise e
 
-let __type_unify pprint file line t1 t2 =
+let __type_unify_v1 pprint file line t1 t2 =
   snd @@ __type_unify_ pprint file line StrMap.empty t1 t2
+
+let __type_unify_v2 (pprint : t -> string) file line t1 t2 =
+  let m = type_unification_v2 StrMap.empty [ (t1, t2) ] in
+  let error_print () =
+    Printf.printf "Type unify error: %s ==> %s\n" (pprint t1) (pprint t2);
+    _failatwith file line "normal type check error"
+  in
+  match m with
+  | Some m ->
+      let t1, t2 = map2 (subst_m m) (t1, t2) in
+      if not (eq t1 t2) then (
+        Printf.printf "Precisely: %s ==> %s\n" (layout t1) (layout t2);
+        error_print ())
+      else t2
+  | None -> error_print ()
+
+let __type_unify = __type_unify_v2
