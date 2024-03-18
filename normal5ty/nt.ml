@@ -228,10 +228,11 @@ let __type_unify_v2 (pprint : t -> string) file line t1 t2 =
   match m with
   | Some m ->
       let t1, t2 = map2 (subst_m m) (t1, t2) in
-      if not (eq t1 t2) then (
-        Printf.printf "Precisely: %s ==> %s\n" (layout t1) (layout t2);
-        error_print ())
-      else t2
+      __type_unify_v1 pprint file line t1 t2
+      (* if not (eq t1 t2) then ( *)
+      (*   Printf.printf "Precisely: %s ==> %s\n" (layout t1) (layout t2); *)
+      (*   error_print ()) *)
+      (* else t2 *)
   | None -> error_print ()
 
 let __type_unify = __type_unify_v2
