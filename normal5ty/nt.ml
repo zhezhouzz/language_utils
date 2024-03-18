@@ -15,6 +15,13 @@ type t =
   | Ty_constructor of (string * t list)
 [@@deriving sexp]
 
+let _unique_type_var_name = ref 0
+
+let new_type_var () =
+  let res = Ty_var (spf "t%i" !_unique_type_var_name) in
+  _unique_type_var_name := !_unique_type_var_name + 1;
+  res
+
 let is_basic_tp = function
   | Ty_unit | Ty_int | Ty_nat | Ty_bool | Ty_uninter _ -> true
   | _ -> false
