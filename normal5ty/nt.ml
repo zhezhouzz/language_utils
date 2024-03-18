@@ -94,7 +94,7 @@ let nat_ty = Ty_nat
 let bool_ty = Ty_bool
 let uninter_ty name = Ty_uninter name
 let mk_arr t1 t2 = Ty_arrow (t1, t2)
-let mk_tuple ts = Ty_tuple ts
+let mk_tuple ts = match ts with [ t ] -> t | _ -> Ty_tuple ts
 
 let get_argty = function
   | Ty_arrow (t1, _) -> t1
