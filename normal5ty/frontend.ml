@@ -48,8 +48,8 @@ and core_type_desc_to_t t =
       | [ "bool" ], [] -> T.Ty_bool
       | [ "int" ], [] -> T.Ty_int
       | [ "nat" ], [] -> T.Ty_nat
-      | cs, [] ->
-          T.Ty_uninter (Zzdatatype.Datatype.List.split_by "." (fun x -> x) cs)
+      (* | cs, [] -> *)
+      (*     T.Ty_uninter (Zzdatatype.Datatype.List.split_by "." (fun x -> x) cs) *)
       (* | [ "list" ], [ t ] -> T.Ty_constructor ("list", [ core_type_to_t t ]) *)
       | [ c ], args -> T.Ty_constructor (c, List.map core_type_to_t args)
       | _, _ ->
@@ -101,7 +101,6 @@ let notated_t_to_core_type (name, t) =
   match name with
   | None -> ct
   | Some name -> desc_to_ct (Ptyp_extension (Location.mknoloc name, PTyp ct))
-
 
 let layout t = layout_ (t_to_core_type t)
 let of_string str = core_type_to_t @@ Parse.core_type @@ Lexing.from_string str
