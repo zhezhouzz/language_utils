@@ -22,6 +22,11 @@ let new_type_var () =
   _unique_type_var_name := !_unique_type_var_name + 1;
   res
 
+let is_base_tp = function
+  | Ty_unit | Ty_int | Ty_nat | Ty_bool | Ty_uninter _ | Ty_constructor _ ->
+      true
+  | _ -> false
+
 let is_basic_tp = function
   | Ty_unit | Ty_int | Ty_nat | Ty_bool | Ty_uninter _ -> true
   | _ -> false
