@@ -43,6 +43,10 @@ and core_type_desc_to_t t =
   | Ptyp_arrow (_, t1, t2) -> T.Ty_arrow (core_type_to_t t1, core_type_to_t t2)
   | Ptyp_tuple ts -> T.Ty_tuple (List.map core_type_to_t ts)
   | Ptyp_constr (lc, ts) -> (
+      let () =
+        Printf.printf "%s\n"
+          (Zzdatatype.Datatype.StrList.to_string (Longident.flatten lc.txt))
+      in
       match (Longident.flatten lc.txt, ts) with
       | [ "unit" ], [] -> T.Ty_unit
       | [ "bool" ], [] -> T.Ty_bool
@@ -53,7 +57,7 @@ and core_type_desc_to_t t =
       (* | [ "list" ], [ t ] -> T.Ty_constructor ("list", [ core_type_to_t t ]) *)
       | [ c ], args -> T.Ty_constructor (c, List.map core_type_to_t args)
       | _, _ ->
-          failwith @@ Printf.sprintf "--un-imp: %s" (layout_ @@ desc_to_ct t))
+          failwith @@ Printf.sprintf "--un-imp??: %s" (layout_ @@ desc_to_ct t))
 
 let rec t_to_core_type t = desc_to_ct (t_to_core_type_desc t)
 
