@@ -36,6 +36,9 @@ and core_type_desc_to_t t =
   | Ptyp_poly ([ lc ], ct) ->
       _failatwith __FILE__ __LINE__
         (spf "unimp: poly: lc: %s; ct: %s" lc.txt (layout_ ct))
+  | Ptyp_poly ([], _) ->
+      _failatwith __FILE__ __LINE__
+        (spf "unimp: poly: [], %s" @@ layout_ @@ desc_to_ct t)
   | Ptyp_poly (_, _) ->
       _failatwith __FILE__ __LINE__
         (spf "unimp: poly: %s" @@ layout_ @@ desc_to_ct t)
