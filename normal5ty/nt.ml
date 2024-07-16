@@ -13,6 +13,7 @@ type t =
   | Ty_tuple of t list
   | Ty_uninter of string
   | Ty_constructor of (string * t list)
+  | Ty_record of (string * t) list
 [@@deriving sexp]
 
 let _unique_type_var_name = ref 0
@@ -61,9 +62,19 @@ let eq x y =
         String.equal id1 id2
         && List.length args1 == List.length args2
         && List.for_all2 (fun a b -> aux (a, b)) args1 args2
+    | Ty_record l1, Ty_record l2 ->
+        let l1 = List.sort Stdlib.compare l1 in
+        let l2 = List.sort Stdlib.compare l2 in
+        List.equal
+          (fun (x1, t1) (x2, t2) -> String.equal x1 x2 && aux (t1, t2))
+          l1 l2
     | _ -> false
   in
   aux (x, y)
+
+let get_record_types = function
+  | Ty_record l -> l
+  | _ -> _failatwith __FILE__ __LINE__ "die"
 
 let destruct_arr_tp tp =
   let rec aux = function
@@ -100,6 +111,7 @@ let bool_ty = Ty_bool
 let uninter_ty name = Ty_uninter name
 let mk_arr t1 t2 = Ty_arrow (t1, t2)
 let mk_tuple ts = match ts with [ t ] -> t | _ -> Ty_tuple ts
+let mk_record ts = Ty_record ts
 
 let get_argty = function
   | Ty_arrow (t1, _) -> t1
@@ -122,6 +134,7 @@ let subst t (id, ty) =
     | Ty_arrow (t1, t2) -> Ty_arrow (aux t1, aux t2)
     | Ty_tuple xs -> Ty_tuple (List.map aux xs)
     | Ty_constructor (id, args) -> Ty_constructor (id, List.map aux args)
+    | Ty_record l -> Ty_record (List.map (fun (x, t) -> (x, aux t)) l)
   in
   aux t
 
@@ -158,6 +171,20 @@ let type_unification_v2 m (cs : (t * t) list) =
         | _, Ty_tuple [ t2 ] -> aux m ((t1, t2) :: cs)
         | Ty_tuple ts1, Ty_tuple ts2 when List.length ts1 == List.length ts2 ->
             aux m (List.combine ts1 ts2 @ cs)
+        | Ty_record l1, Ty_record l2 ->
+            let tab = Hashtbl.create (List.length l1) in
+            let () = List.iter (fun (x, t) -> Hashtbl.add tab x t) l1 in
+            let cs =
+              List.fold_left
+                (fun res (x, t) ->
+                  match Hashtbl.find_opt tab x with
+                  | None ->
+                      _failatwith __FILE__ __LINE__
+                        (spf "connot find feild %s" x)
+                  | Some t' -> (t', t) :: res)
+                cs l2
+            in
+            aux m cs
         | _, _ -> if eq t1 t2 then aux m cs else None)
   in
   aux m cs
@@ -203,6 +230,21 @@ let __type_unify_ (pprint : t -> string) file line m t1 t2 =
             (m, []) (List.combine ts1 ts2)
         in
         (m, Ty_tuple ts)
+    | Ty_record l1, Ty_record l2 when List.length l1 == List.length l2 ->
+        let tab = Hashtbl.create (List.length l1) in
+        let () = List.iter (fun (x, t) -> Hashtbl.add tab x t) l1 in
+        let m, l =
+          List.fold_left
+            (fun (m, l) (x, t) ->
+              match Hashtbl.find_opt tab x with
+              | None ->
+                  _failatwith __FILE__ __LINE__ (spf "connot find feild %s" x)
+              | Some t' ->
+                  let m, t = unify m (t', t) in
+                  (m, (x, t) :: l))
+            (m, []) l2
+        in
+        (m, Ty_record l)
     | _, Ty_any -> (m, t1)
     | _, Ty_unknown -> (m, t1)
     | _, Ty_var _ ->

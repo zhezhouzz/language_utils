@@ -29,4 +29,6 @@ module type T = sig
     t Zzdatatype.Datatype.StrMap.t * t
 
   val _type_unify : string -> int -> t -> t -> t
+  val mk_record : (string * t) list -> t
+  val get_record_types : t -> (string * t) list
 end

@@ -16,18 +16,21 @@ let desc_to_ct t =
     ptyp_attributes = [];
   }
 
-let rec core_type_to_t ct = core_type_desc_to_t ct.ptyp_desc
-(* let t = core_type_desc_to_t ct.ptyp_desc in *)
-(* match t with *)
-(* | T.Ty_arrow (_, t1, t2) -> *)
-(*     let label = attributes_to_label ct.ptyp_attributes in *)
-(*     T.Ty_arrow (label, t1, t2) *)
-(* | _ -> _failatwith __FILE__ __LINE__ "?" *)
+let rec core_type_to_t ct =
+  let nt = core_type_desc_to_t ct.ptyp_desc in
+  nt
+
+and object_to_labled_type feild =
+  match feild.pof_desc with
+  | Otag (lable, ct) -> (lable.txt, core_type_to_t ct)
+  | _ -> _failatwith __FILE__ __LINE__ "wrong record type"
 
 and core_type_desc_to_t t =
   match t with
   | Ptyp_any -> T.Ty_any
-  | Ptyp_object (_, _) -> failwith "type object"
+  | Ptyp_object (l, _) ->
+      let l = List.map object_to_labled_type l in
+      Ty_record l
   | Ptyp_class (_, _)
   | Ptyp_alias (_, _)
   | Ptyp_variant (_, _, _)
@@ -93,8 +96,17 @@ and t_to_core_type_desc t =
             | None -> _failatwith __FILE__ __LINE__ "die"
             | Some x -> x),
             List.map t_to_core_type args )
+    | T.Ty_record l ->
+        Ptyp_object (List.map labled_t_to_feild l, Asttypes.Closed)
   in
   aux t
+
+and labled_t_to_feild (x, t) =
+  {
+    pof_desc = Otag (Location.mknoloc x, t_to_core_type t);
+    pof_loc = Location.none;
+    pof_attributes = [];
+  }
 
 let core_type_to_notated_t ct =
   match ct.ptyp_desc with
@@ -118,3 +130,8 @@ let%test "parse3" = T.eq T.(mk_arr bool_ty int_ty) (of_string "bool -> int")
 let%test "parse4" = T.eq T.(mk_arr bool_ty int_ty) (of_string "bool -> int")
 let%test "parse5" = T.eq T.(uninter_ty "path") (of_string "path")
 let%test "parse6" = T.eq T.(uninter_ty "Path.t") (of_string "Path.t")
+
+let%test "parse7" =
+  T.eq
+    T.(Ty_record [ ("z", Ty_bool); ("x", Ty_int) ])
+    (of_string "<x:int; z:bool>")

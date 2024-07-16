@@ -88,3 +88,18 @@ let __type_unify_ pprint file line s t1 t2 =
       (s, Some t)
   | Some t1, None -> (s, Some t1)
   | None, t2 -> (s, t2)
+
+let get_record_types = function
+  | Some (Nt.Ty_record l) -> List.map (fun (x, t) -> (x, Some t)) l
+  | _ -> _failatwith __FILE__ __LINE__ "die"
+
+let mk_record ts =
+  let* ts =
+    List.fold_right
+      (fun (x, t) res ->
+        let* l = res in
+        let* t = t in
+        Some ((x, t) :: l))
+      ts (Some [])
+  in
+  Some (Nt.Ty_record ts)
