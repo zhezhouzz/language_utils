@@ -9,7 +9,7 @@ let name_tab = Hashtbl.create 100
 
 open Printf
 
-let split_char = '!'
+let split_char = '_'
 
 let unique_ name =
   match Hashtbl.find_opt name_tab name with
