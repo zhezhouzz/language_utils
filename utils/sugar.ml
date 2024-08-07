@@ -47,6 +47,13 @@ let ( let* ) x f = opt_bind x f
 let ( let+ ) x f = opt_fmap x f
 let compare_bind a b = if a != 0 then a else b
 
+(** Better compostion operations *)
+let ( &&& ) a b x = a x && b x
+
+let ( ||| ) a b x = a x || b x
+let ( #. ) f g x = f (g x)
+let ( #> ) f g x = g (f x)
+
 let clock f =
   let start_t = Core_unix.gettimeofday () in
   let res = f () in
