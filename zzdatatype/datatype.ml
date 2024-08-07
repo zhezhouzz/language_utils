@@ -10,6 +10,7 @@ module IntListMap = Zmap.IntListMap
 module BitArray = Zarray.Bitarray
 module Array = Zarray.Array
 module BoolVec = Zarray.BoolVec
+module BoolList = Zarray.BoolList
 module BinomialHeap = Zbinomialhp
 module Pairinghp = Zpairinghp
 module Physicistsq = Zphysicistsq

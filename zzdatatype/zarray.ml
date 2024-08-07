@@ -47,6 +47,28 @@ module BoolVec = struct
   let to_list { arr; _ } = Array.to_list arr
 end
 
+module BoolList = struct
+  type t = bool list
+
+  let rec of_int (len : int) (n : int) =
+    match (len, n) with
+    | 0, _ -> failwith "BoolList: die"
+    | 1, 0 -> [ false ]
+    | 1, 1 -> [ true ]
+    | _, _ ->
+        let res = of_int (len - 1) (n / 2) in
+        if n mod 2 == 0 then false :: res else true :: res
+
+  (** l = binary(to_int (reverse l)) *)
+  let rec to_int (l : t) =
+    match l with
+    | [] -> failwith "BoolList: die"
+    | [ false ] -> 0
+    | [ true ] -> 1
+    | true :: l -> (2 * to_int l) + 1
+    | false :: l -> 2 * to_int l
+end
+
 module Bitarray = struct
   type t = { len : int; buf : bytes }
 
