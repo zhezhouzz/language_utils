@@ -21,7 +21,9 @@ let _assert file line str b =
     failwith
       (Printf.sprintf "[file %s line %i]: Assertion fail with %s" file line str)
 
-let _die (location : Lexing.position) =
+let _die_with (location : Lexing.position) msg =
   failwith
-    (Printf.sprintf "[file %s line %i]: die" location.pos_fname
-       location.pos_lnum)
+    (Printf.sprintf "[file %s line %i]: %s" location.pos_fname location.pos_lnum
+       msg)
+
+let _die (location : Lexing.position) = _die_with location "die"
