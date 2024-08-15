@@ -10,5 +10,5 @@
    rename
    pp
  )
- (libraries zzdatatype core core_unix yojson dolog ocolor)
+ (libraries zzdatatype core core_unix yojson dolog ocolor ppx_here)
 )
