@@ -14,7 +14,7 @@ type t =
   | Ty_uninter of string
   | Ty_constructor of (string * t list)
   | Ty_record of (string * t) list
-[@@deriving sexp]
+[@@deriving eq, ord, sexp]
 
 let _unique_type_var_name = ref 0
 
